@@ -11,7 +11,7 @@
     </div>
 
     <div class="flex justify-center items-center gap-3 w-full">
-        <a href="{{ $info_link }}" class="block w-full">
+        <a href="{{ $link }}" class="block w-full">
             <x-button.button-outline class="w-full">Info</x-button.button-outline>
         </a>
         <x-button.button-primary @click="isOpen = true" class="w-full">Pilih</x-button.button-primary>

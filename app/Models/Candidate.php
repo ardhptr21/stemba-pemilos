@@ -9,6 +9,16 @@ class Candidate extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "slug",
+        "chairman",
+        "vice_chairman",
+        "motto",
+        "vision",
+        "mission",
+        "image"
+    ];
+
     public function students()
     {
         return $this->hasMany(Student::class);

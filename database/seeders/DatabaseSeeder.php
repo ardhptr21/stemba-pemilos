@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Candidate;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         if (env('APP_ENV') == 'local') {
             Student::factory(100)->create();
             Teacher::factory(50)->create();
+            Candidate::factory(3)->create();
         }
     }
 }

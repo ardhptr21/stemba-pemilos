@@ -14,8 +14,10 @@ Route::controller(AuthController::class)->prefix('auth')->group(function () {
 
 Route::controller(VoteController::class)->prefix('vote')->group(function () {
     Route::get('/', 'index')->name('vote.index');
+    Route::get('/thanks', 'thanks')->name('vote.thanks');
+    Route::post('/{candidate:slug}', 'submit')->name('vote.submit');
 });
 
 Route::controller(CandidateController::class)->prefix('candidates')->group(function () {
-    Route::get('/{slug}', 'show')->name('candidates.show');
+    Route::get('/{candidate:slug}', 'show')->name('candidates.show');
 });

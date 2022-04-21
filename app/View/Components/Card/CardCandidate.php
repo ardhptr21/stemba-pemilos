@@ -9,15 +9,15 @@ class CardCandidate extends Component
     public string $title;
     public string $description;
     public string $image;
-    public string $info_link;
+    public string $link;
     public string $action;
 
-    public function __construct(string $title, string $description, string $image, string $info_link = "#", string $action = "")
+    public function __construct(string $title, string $description, string $image, string $link = "#", string $action = "")
     {
         $this->title = $title;
         $this->description = $description;
         $this->image = $image;
-        $this->info_link = $info_link;
+        $this->link = $link;
         $this->action = $action;
     }
 

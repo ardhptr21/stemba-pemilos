@@ -21,16 +21,16 @@
         <div
             class="lg:w-3/4 w-full lg:h-auto h-full lg:my-auto my-20 rounded-md lg:flex-row flex-col overflow-hidden flex shadow-md">
             <div class="w-full h-96 bg-gray-400" style="flex: 1">
-                <img src="https://source.unsplash.com/300x500?anime" alt="">
+                <img src="{{ $candidate->image }}" alt="{{ $candidate->slug }}">
             </div>
             <div class="w-full bg-white lg:h-96 h-full" style="flex: 2">
                 <div class="space-y-10 lg:overflow-x-auto h-full px-10 py-10">
                     <div class="space-y-3">
                         <h1 class="text-3xl font-bold text-primary-bold">
-                            Kandidat 1
+                            Kandidat Ketua Osis
                         </h1>
                         <p class="text-lg capitalize text-primary-light">
-                            bersama satu kita maju, tetap semangat wujudkan tekad!
+                            {{ $candidate->motto }}
                         </p>
                         <hr class="bg-primary-bold h-[3px]">
                     </div>
@@ -41,8 +41,7 @@
                             Visi
                         </h3>
                         <p class="font-semibold text-primary-extralight ">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus fuga similique dolore
-                            voluptatibus vero officiis sed explicabo aut quaerat unde.
+                            {{ $candidate->vision }}
                         </p>
                     </div>
 
@@ -51,28 +50,7 @@
                             Misi
                         </h3>
                         <ol class="list-outside ml-4 list-decimal text-primary-extralight space-y-1">
-                            <li>Mengutamakan iman dan takqa
-                                serta
-                                solidaritas dalam segala aspek</li>
-                            <li>Mengoptimalkan peran serta
-                                fungsi
-                                OSIS sebagai penyelenggara berbagai kegiatan OSIS</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
-                            <li>Lorem ipsum, dolor sit amet
-                                consectetur adipisicing elit. Perferendis, nihil.</li>
+                            {!! $candidate->mission !!}
                         </ol>
                     </div>
                 </div>
