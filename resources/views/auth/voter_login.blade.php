@@ -9,12 +9,15 @@
                 Login
             </h1>
 
-            <form class="mt-10 space-y-5" method="POST">
+            <form class="mt-10 space-y-5" method="POST" action="{{ route('auth.voter_login_loged') }}">
+                @csrf
                 <span x-show="isStudent">
-                    <x-form.input name="nis" type="text" label="NIS" placeholder="Masukkan NIS" />
+                    <x-form.input name="nis" x-bind:disabled="!isStudent" type="text" label="NIS"
+                        placeholder="Masukkan NIS" />
                 </span>
                 <span x-show="!isStudent">
-                    <x-form.input name="nip" type="text" label="NIP" placeholder="masukkan NIP" />
+                    <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="NIP"
+                        placeholder="masukkan NIP" />
                 </span>
                 <input type="hidden" name="type" x-bind:value="isStudent ? 'student' : 'teacher'">
                 <x-form.input name="password" type="password" label="Password" placeholder="Masukkan password" />
