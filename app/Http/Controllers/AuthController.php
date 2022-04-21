@@ -41,5 +41,7 @@ class AuthController extends Controller
             'type' => $validated['type'],
             'id' => $voter->id
         ]);
+
+        return to_route('vote.index');
     }
 }
