@@ -17,7 +17,7 @@
                 </span>
                 <span x-show="!isStudent">
                     <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="NIP"
-                        placeholder="masukkan NIP" />
+                        placeholder="Masukkan NIP" />
                 </span>
                 <input type="hidden" name="type" x-bind:value="isStudent ? 'student' : 'teacher'">
                 <x-form.input name="password" type="password" label="Password" placeholder="Masukkan password" />
