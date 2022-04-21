@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+@layer components {
+    .bg-texture {
+        background-color: inherit;
+        background-image: linear-gradient(#f8f8f8 2px, transparent 2px),
+            linear-gradient(90deg, #f8f8f8 2px, transparent 2px),
+            linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.3) 1px,
+                transparent 1px
+            );
+        background-size: 50px 50px, 50px 50px, 20px 20px, 20px 20px;
+        background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    }
+}
