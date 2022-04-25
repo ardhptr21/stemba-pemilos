@@ -18,7 +18,7 @@ class CandidateFactory extends Factory
             "motto" => $this->faker->sentence(rand(6, 10)),
             "vision" => $this->faker->paragraph(rand(3, 5)),
             "mission" => join("</li>", array_map(fn ($val) => "<li>$val", $this->faker->paragraphs(rand(5, 10)))) . "</li>",
-            "image" => $this->faker->imageUrl(category: 'anime', width: 500, height: 700),
+            "image" => "https://source.unsplash.com/400x60" . rand(1, 5) . "/?anime,people,school",
         ];
     }
 }

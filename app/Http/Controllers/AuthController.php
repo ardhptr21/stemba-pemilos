@@ -30,11 +30,15 @@ class AuthController extends Controller
         }
 
         if (!$voter) {
-            return back();
+            return back()->with('error', $validated['type'] == 'student' ? 'NIS tidak ditemukan' : 'NIP tidak ditemukan');
+        }
+
+        if ($voter->status == 'done') {
+            return back()->with('error', $validated['type'] == 'student' ? 'Siswa tersebut sudah melakukan pemilihan' : 'Guru tersebut sudah melakukan pemilihan');
         }
 
         if ($voter->password != $validated['password']) {
-            return back();
+            return back()->with('error', 'Password salah');
         }
 
         session()->put('voter', [

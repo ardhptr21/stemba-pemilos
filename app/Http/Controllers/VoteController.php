@@ -34,21 +34,27 @@ class VoteController extends Controller
 
         if ($voter['type'] == 'student') {
             Student::where('id', $voter['id'])->update([
-                'candidate_id' => $candidate->id
+                'candidate_id' => $candidate->id,
+                'status' => 'done'
             ]);
         } else {
             Teacher::where('id', $voter['id'])->update([
-                'candidate_id' => $candidate->id
+                'candidate_id' => $candidate->id,
+                'status' => 'done'
             ]);
         }
 
         session()->forget('voter');
-        session()->now('voted', true);
-        return to_route('auth.voter_login');
+        session()->flash('voted', true);
+        return to_route('vote.thanks');
     }
 
     public function thanks()
     {
-        return view('vote.thanks');
+        if (session()->has('voted')) {
+            return view('vote.thanks');
+        } else {
+            return to_route('vote.index');
+        }
     }
 }
