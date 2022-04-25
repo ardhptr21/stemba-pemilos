@@ -10,4 +10,9 @@ class AuthController extends Controller
     {
         return view('auth.voter_login');
     }
+
+    public function admin_login()
+    {
+        return view('auth.admin_login');
+    }
 }
