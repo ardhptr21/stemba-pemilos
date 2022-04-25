@@ -48,4 +48,8 @@ class AuthController extends Controller
 
         return to_route('vote.index');
     }
+    public function admin_login()
+    {
+        return view('auth.admin_login');
+    }
 }
