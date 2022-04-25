@@ -29,7 +29,7 @@
                 <x-button.button-primary type="submit" class="w-full">Login</x-button.button-primary>
             </form>
             <div class="mt-5">
-                <a href="#">
+                <a href="{{ route('auth.admin_login') }}">
                     <h5 class="font-medium text-center hover:underline">Login Admin</h5>
                 </a>
             </div>
