@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,8 +18,16 @@ class AdminController extends Controller
         return view('admin.candidate');
     }
 
-    public function recapitulation()
+    public function recapitulation(Request $request)
     {
-        return view('admin.recapitulation');
+        $students_voter = [];
+        $teachers_voter = [];
+
+        if ($request->get('role') == 'student') {
+            $students_voter = Student::paginate(25)->withQueryString();
+        } else if ($request->get('role') == 'teacher') {
+            $teachers_voter = Teacher::paginate(25)->withQueryString();
+        }
+        return view('admin.recapitulation', compact('students_voter', 'teachers_voter'));
     }
 }
