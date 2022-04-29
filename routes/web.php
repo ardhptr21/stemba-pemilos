@@ -22,6 +22,7 @@ Route::controller(VoteController::class)->prefix('vote')->group(function () {
 
 Route::controller(CandidateController::class)->prefix('candidates')->group(function () {
     Route::get('/{candidate:slug}', 'show')->name('candidates.show');
+    Route::post('/', 'store')->name('candidates.store');
 });
 
 Route::controller(AdminController::class)->prefix('admin')->group(function () {
