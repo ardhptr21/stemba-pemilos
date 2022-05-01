@@ -12,6 +12,8 @@ Route::controller(AuthController::class)->prefix('auth')->group(function () {
     Route::get('/voter_login', 'voter_login')->name('auth.voter_login');
     Route::post('/voter_login', 'voter_login_logged')->name('auth.voter_login_loged');
     Route::get('/admin_login', 'admin_login')->name('auth.admin_login');
+    Route::post('/admin_login', 'admin_login_logged')->name('auth.admin_login_logged');
+    Route::post('/logout', 'logout')->name('auth.logout');
 });
 
 Route::controller(VoteController::class)->prefix('vote')->group(function () {

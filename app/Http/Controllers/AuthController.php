@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -48,8 +49,33 @@ class AuthController extends Controller
 
         return to_route('vote.index');
     }
+
     public function admin_login()
     {
         return view('auth.admin_login');
+    }
+
+    public function admin_login_logged(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($validated)) {
+            return to_route('admin.index');
+        }
+
+        return back()->with('error', 'Email atau password salah');
+    }
+
+
+    public function logout()
+    {
+        session()->forget('voter');
+        session()->invalidate();
+        session()->regenerateToken();
+        Auth::logout();
+        return to_route('vote.index');
     }
 }
