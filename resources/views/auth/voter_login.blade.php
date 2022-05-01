@@ -8,7 +8,7 @@
                 Login
             </h1>
 
-            <form class="mt-10 space-y-5" method="POST" action="{{ route('auth.voter_login_loged') }}" autocomplete="off">
+            <form class="mt-10 space-y-5" method="POST" action="{{ route('auth.voter_login_logged') }}" autocomplete="off">
                 @csrf
                 <span x-show="isStudent">
                     <x-form.input name="nis" x-bind:disabled="!isStudent" type="text" label="NIS" placeholder="Masukkan NIS"

@@ -11,13 +11,6 @@ class VoteController extends Controller
 {
     public function index()
     {
-
-        $voter = session()->get('voter');
-
-        if (!isset($voter)) {
-            return to_route('auth.voter_login');
-        }
-
         $candidates = Candidate::select('slug', 'vision', 'image')->get();
 
         return view('vote.index', compact('candidates'));
@@ -27,10 +20,6 @@ class VoteController extends Controller
     {
 
         $voter = session()->get('voter');
-
-        if (!isset($voter)) {
-            return to_route('auth.voter_login');
-        }
 
         if ($voter['type'] == 'student') {
             Student::where('id', $voter['id'])->update([
@@ -44,7 +33,6 @@ class VoteController extends Controller
             ]);
         }
 
-        session()->forget('voter');
         session()->flash('voted', true);
         return to_route('vote.thanks');
     }
@@ -52,6 +40,9 @@ class VoteController extends Controller
     public function thanks()
     {
         if (session()->has('voted')) {
+            session()->forget('voter');
+            session()->forget('voted');
+            session()->regenerate();
             return view('vote.thanks');
         } else {
             return to_route('vote.index');
