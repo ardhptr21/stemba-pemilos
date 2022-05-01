@@ -24,9 +24,18 @@ class AdminController extends Controller
         $teachers_voter = [];
 
         if ($request->get('role') == 'student') {
-            $students_voter = Student::paginate(25)->withQueryString();
+            $students_voter = Student::filter($request)
+                ->orderBy('class')
+                ->orderBy('major')
+                ->orderBy('index')
+                ->orderBy('name')
+                ->paginate(25)
+                ->withQueryString();
         } else if ($request->get('role') == 'teacher') {
-            $teachers_voter = Teacher::paginate(25)->withQueryString();
+            $teachers_voter = Teacher::filter($request)
+                ->orderBy('name')
+                ->paginate(25)
+                ->withQueryString();
         }
         return view('admin.recapitulation', compact('students_voter', 'teachers_voter'));
     }

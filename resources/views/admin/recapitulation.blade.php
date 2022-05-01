@@ -3,7 +3,7 @@
     <div class="w-full px-6">
         <div class="flex items-center justify-start gap-3">
             <x-form.dropdown label="Role" x-init=""
-                @change="addUrlSearchParams({ key: 'role', value: $el.selectedOptions[0].value})">
+                @change="window.location.href = `{{ route('admin.recapitulation') }}?role=${$el.selectedOptions[0].value}`">
                 <option @selected(Request::get('role') == 'student') value="student">Siswa</option>
                 <option @selected(Request::get('role') == 'teacher') value="teacher">Guru</option>
             </x-form.dropdown>
@@ -24,6 +24,22 @@
                     <option value="12" @selected(Request::get('class') == '12')>XII</option>
                     <option value="13" @selected(Request::get('class') == '13')>XIII</option>
                 </x-form.dropdown>
+
+                <x-form.dropdown x-init=""
+                    @change="addUrlSearchParams({ key: 'major', value: $el.selectedOptions[0].value})" label="Jurusan">
+                    <option value="">Semua</option>
+                    'TME', 'KGSP', 'TFLM', 'TEDK', 'SIJA', 'KJIJ', 'TMPO', 'TTL'
+                    <option value="TME" @selected(Request::get('major') == 'TME')>TME</option>
+                    <option value="KGSP" @selected(Request::get('major') == 'KGSP')>KGSP</option>
+                    <option value="TFLM" @selected(Request::get('major') == 'TFLM')>TFLM</option>
+                    <option value="TEDK" @selected(Request::get('major') == 'TEDK')>TEDK</option>
+                    <option value="SIJA" @selected(Request::get('major') == 'SIJA')>SIJA</option>
+                    <option value="KJIJ" @selected(Request::get('major') == 'KJIJ')>KJIJ</option>
+                    <option value="TMPO" @selected(Request::get('major') == 'TMPO')>TMPO</option>
+                    <option value="TTL" @selected(Request::get('major') == 'TTL')>TTL</option>
+                </x-form.dropdown>
+
+
 
                 <x-form.dropdown label="Indeks" x-init=""
                     @change="addUrlSearchParams({ key: 'index', value: $el.selectedOptions[0].value})">
@@ -60,7 +76,8 @@
                                         {{ $loop->iteration + $students_voter->firstItem() - 1 }}
                                     </x-table.td>
                                     <x-table.td>{{ $student->name }}</x-table.td>
-                                    <x-table.td>{{ $student->class }} {{ $student->major }}</x-table.td>
+                                    <x-table.td>{{ $student->class }} {{ $student->major }} {{ $student->index }}
+                                    </x-table.td>
                                     <x-table.td>{{ $student->nis }}</x-table.td>
                                     <x-table.td>
                                         @if ($student->status === 'done')

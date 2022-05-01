@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nis')->unique();
             $table->string('class');
             $table->string('major');
+            $table->smallInteger('index');
             $table->enum('status', ['done', 'not_done'])->default('not_done');
             $table->foreignId('candidate_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('password');
