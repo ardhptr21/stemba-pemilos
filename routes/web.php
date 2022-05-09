@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,11 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->
     Route::get('/', 'index')->name('admin.index');
     Route::get('/candidate', 'candidate')->name('admin.candidate');
     Route::get('/recapitulation', 'recapitulation')->name('admin.recapitulation');
+});
+
+Route::prefix('export')->middleware('auth')->group(function () {
+    Route::get('/students', [StudentController::class, 'export'])->name('export.students');
+    Route::get('/teachers', [TeacherController::class, 'export'])->name('export.teachers');
 });
 
 Route::fallback(fn () => abort(404));

@@ -34,6 +34,10 @@ class AdminController extends Controller
 
     public function recapitulation(Request $request)
     {
+        if ($request->get('role') != 'student' && $request->get('role') != 'teacher') {
+            return to_route('admin.recapitulation', ['role' => 'student']);
+        }
+
         $students_voter = [];
         $teachers_voter = [];
 

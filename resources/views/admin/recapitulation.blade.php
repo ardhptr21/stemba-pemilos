@@ -51,6 +51,12 @@
                 </x-form.dropdown>
             @endif
 
+
+        </div>
+        <div class="mt-5">
+            <a href="{{ route('export.' . Request::get('role') . 's', Request::all()) }}">
+                <x-button.button-success class="bg-green-500">Export</x-button.button-success>
+            </a>
         </div>
         <div class="bg-white">
             <div class="overflow-x-auto mt-7">
