@@ -27,7 +27,7 @@ Route::controller(VoteController::class)->prefix('vote')->middleware(['guest', '
 
 Route::controller(CandidateController::class)->prefix('candidates')->middleware(['guest', 'voter_auth'])->group(function () {
     Route::get('/{candidate:slug}', 'show')->name('candidates.show');
-    Route::post('/', 'store')->name('candidates.store')->withoutMiddleware(['auth', 'voter_auth']);
+    Route::post('/', 'store')->name('candidates.store')->withoutMiddleware(['guest', 'voter_auth']);
 });
 
 Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function () {

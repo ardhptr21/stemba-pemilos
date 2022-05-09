@@ -39,4 +39,9 @@ class Student extends Model
             $query->where('index', $request->get('index'));
         });
     }
+
+    public function isDone(Student $student)
+    {
+        return $student->status == 'done' && $student->candidate_id != null;
+    }
 }

@@ -29,4 +29,9 @@ class Teacher extends Model
             $query->where('status', $request->get('status'));
         });
     }
+
+    public function isDone(Teacher $teacher)
+    {
+        return $teacher->status == 'done' && $teacher->candidate_id != null;
+    }
 }

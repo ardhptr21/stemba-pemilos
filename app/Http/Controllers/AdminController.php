@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -10,7 +11,20 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $candidates = Candidate::with(['teachers', 'students'])->get();
+        $students = Student::all();
+        $teachers = Teacher::all();
+
+        $total_all = $students->count() + $teachers->count();
+        $total_all_is_done = $students->filter(fn ($s) => $s->isDone($s))->count() + $teachers->filter(fn ($t) => $t->isDone($t))->count();
+
+        $percent_of_all = number_format($total_all_is_done / $total_all * 100, 1);
+        $each_candidate_percent = $candidates->map(function ($candidate) use ($total_all) {
+            return number_format((($candidate->students->count() + $candidate->teachers->count()) / $total_all) * 100, 1);
+        })->toArray();
+
+
+        return view('admin.index', compact('each_candidate_percent', 'percent_of_all'));
     }
 
     public function candidate()
