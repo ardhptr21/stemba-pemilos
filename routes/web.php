@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\URL;
 
-if (env('APP_ENV') === 'production') {
+if (env('APP_ENV') === 'production' && !env('APP_DEBUG')) {
     URL::forceScheme('https');
 }
 
