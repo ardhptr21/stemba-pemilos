@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['admin_title' => 'Change Password'])
+@extends('layouts.admin', ['admin_title' => 'Ganti Password', 'title' => 'Admin Ganti Password'])
 
 @section('content')
     <div class="w-3/4 p-20 mx-auto bg-white border rounded-md shadow-md">

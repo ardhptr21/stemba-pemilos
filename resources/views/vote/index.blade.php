@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Vote'])
 
 @section('content')
     <x-base.section class="bg-texture space-y-10 relative">

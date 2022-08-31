@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Info Kandidat'])
 
 @section('content')
     <x-base.section class="bg-texture relative flex justify-center items-center min-h-screen">

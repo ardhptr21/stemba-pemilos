@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Admin Login'])
 
 @section('content')
     <x-base.section class="flex flex-col items-center justify-center min-h-screen bg-texture">

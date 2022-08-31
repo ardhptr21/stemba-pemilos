@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin', ['title' => 'Admin Rekapitulasi', 'admin_title' => 'Rekapitulasi'])
 @section('content')
     <div class="w-full px-6">
         <div class="flex items-center justify-start gap-3">

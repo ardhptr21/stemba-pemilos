@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Terima Kasih'])
 
 @section('content')
     <x-base.section x-data="{ time: 10 }" x-init="setinterval = setInterval(() => { if (time > 0) time--; if (time <= 0) window.location.href = '/' }, 1000)"
