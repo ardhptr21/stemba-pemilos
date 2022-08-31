@@ -6,6 +6,7 @@ use App\Models\Candidate;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -56,5 +57,35 @@ class AdminController extends Controller
                 ->withQueryString();
         }
         return view('admin.recapitulation', compact('students_voter', 'teachers_voter'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirmation' => 'required|same:new_password'
+        ]);
+
+
+        $isMatch = Hash::check($validated['old_password'], auth()->user()->password);
+
+        if (!$isMatch) {
+            return back()->withErrors(['old_password' => 'Old password is not match']);
+        }
+
+        if ($validated['old_password'] == $validated['new_password']) {
+            return back()->with('error', 'New password must be different from old password');
+        }
+
+        $result = auth()->user()->update([
+            'password' => $validated['new_password']
+        ]);
+
+        if (!$result) {
+            return back()->with('error', 'Failed to change password');
+        }
+
+        return back()->with('success', 'Password changed successfully');
     }
 }

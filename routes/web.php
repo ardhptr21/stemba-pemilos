@@ -36,6 +36,8 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->
     Route::get('/', 'index')->name('admin.index');
     Route::get('/candidate', 'candidate')->name('admin.candidate');
     Route::get('/recapitulation', 'recapitulation')->name('admin.recapitulation');
+    Route::view('/change-password', 'admin.change-password')->name('admin.change-password');
+    Route::put('/change-password', 'changePassword')->name('admin.change-password');
 });
 
 Route::prefix('export')->middleware('auth')->group(function () {
