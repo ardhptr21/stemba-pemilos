@@ -40,6 +40,7 @@ Route::controller(CandidateController::class)->prefix('candidates')->middleware(
 
 Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', 'index')->name('admin.index');
+    Route::view('/import', 'admin.import')->name('admin.import');
     Route::get('/candidate', 'candidate')->name('admin.candidate');
     Route::get('/recapitulation', 'recapitulation')->name('admin.recapitulation');
     Route::view('/change-password', 'admin.change-password')->name('admin.change-password');
@@ -49,6 +50,11 @@ Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->
 Route::prefix('export')->middleware('auth')->group(function () {
     Route::get('/students', [StudentController::class, 'export'])->name('export.students');
     Route::get('/teachers', [TeacherController::class, 'export'])->name('export.teachers');
+});
+
+Route::prefix('import')->middleware('auth')->group(function () {
+    Route::post('/students', [StudentController::class, 'import'])->name('import.students');
+    Route::post('/teachers', [TeacherController::class, 'import'])->name('import.teachers');
 });
 
 Route::fallback(fn () => abort(404));
