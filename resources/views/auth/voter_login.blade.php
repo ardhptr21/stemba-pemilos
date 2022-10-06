@@ -20,8 +20,8 @@
                         placeholder="Masukkan NIS" error="{{ $errors->first('nis') }}" />
                 </span>
                 <span x-show="!isStudent">
-                    <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="NIP"
-                        placeholder="Masukkan NIP" error="{{ $errors->first('nip') }}" />
+                    <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="KODE"
+                        placeholder="Masukkan KODE" error="{{ $errors->first('nip') }}" />
                 </span>
                 <input type="hidden" name="type" x-bind:value="isStudent ? 'student' : 'teacher'">
 
@@ -33,11 +33,6 @@
 
                 <x-button.button-primary type="submit" class="w-full">Login</x-button.button-primary>
             </form>
-            <div class="mt-5">
-                <a href="{{ route('auth.admin_login') }}">
-                    <h5 class="font-medium text-center hover:underline">Login Admin</h5>
-                </a>
-            </div>
         </div>
 
         <div

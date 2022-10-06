@@ -91,7 +91,7 @@
                                     <x-table.th>Kelas Jurusan</x-table.th>
                                     <x-table.th>NIS</x-table.th>
                                 @elseif (Request::get('role') == 'teacher')
-                                    <x-table.th>NIP</x-table.th>
+                                    <x-table.th>KODE</x-table.th>
                                 @endif
                                 <x-table.th>Status</x-table.th>
                             </x-table.tr-head>
