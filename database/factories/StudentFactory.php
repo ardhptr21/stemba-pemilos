@@ -24,7 +24,7 @@ class StudentFactory extends Factory
         return [
             "name" => $this->faker->name(),
             "nis" => $this->faker->unique()->numerify("##########"),
-            "class" => $this->faker->randomElement([10, 11, 12]),
+            "class" => array_rand(['X', 'XI', 'XII']),
             "index" => $this->faker->numberBetween(1, 4),
             "major" => $this->faker->randomElement($class),
             "password" => $this->faker->password(6, 6),

@@ -38,14 +38,16 @@ Route::controller(VoteController::class)->prefix('vote')->middleware(['guest', '
 // handling candidate
 Route::controller(CandidateController::class)->prefix('candidates')->middleware(['guest', 'voter_auth'])->group(function () {
     Route::get('/{candidate:slug}', 'show')->name('candidates.show');
-    Route::post('/', 'store')->name('candidates.store')->withoutMiddleware(['guest', 'voter_auth']);
+    Route::delete('/{candidate:slug}', 'destroy')->name('candidates.destroy')->withoutMiddleware(['guest', 'voter_auth'])->middleware('auth');
+    Route::post('/', 'store')->name('candidates.store')->withoutMiddleware(['guest', 'voter_auth'])->middleware('auth');
 });
 
 // handling admin
 Route::controller(AdminController::class)->middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', 'index')->name('admin.index');
     Route::view('/import', 'admin.import')->name('admin.import');
-    Route::get('/candidate', 'candidate')->name('admin.candidate');
+    Route::get('/candidates', 'candidates')->name('admin.candidates');
+    Route::view('/candidates/add', 'admin.add-candidate')->name('admin.add-candidate');
     Route::get('/recapitulation', 'recapitulation')->name('admin.recapitulation');
     Route::view('/change-password', 'admin.change-password')->name('admin.change-password');
     Route::put('/change-password', 'changePassword')->name('admin.change-password');

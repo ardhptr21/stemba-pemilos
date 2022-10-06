@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['title' => 'Admin Kandidat', 'admin_title' => 'Kandidat'])
+@extends('layouts.admin', ['title' => 'Admin Kandidat', 'admin_title' => 'Tambah Kandidat'])
 
 @section('content')
     @if (session('success'))

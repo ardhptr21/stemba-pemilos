@@ -15,6 +15,11 @@ class StudentsImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
+        if (!collect($row)->only(['name', 'nis', 'class', 'major', 'index', 'password'])->every(function ($value) {
+            return !empty($value);
+        })) {
+            return null;
+        };
         return new Student([
             "name" => $row['name'],
             "nis" => $row['nis'],

@@ -32,11 +32,6 @@ class AdminController extends Controller
         return view('admin.index', compact('each_candidate_percent', 'percent_of_all'));
     }
 
-    public function candidate()
-    {
-        return view('admin.candidate');
-    }
-
     public function recapitulation(Request $request)
     {
         if ($request->get('role') != 'student' && $request->get('role') != 'teacher') {
@@ -45,6 +40,7 @@ class AdminController extends Controller
 
         $students_voter = [];
         $teachers_voter = [];
+        $fields = [];
 
         if ($request->get('role') == 'student') {
             $students_voter = Student::filter($request)
@@ -54,13 +50,18 @@ class AdminController extends Controller
                 ->orderBy('name')
                 ->paginate(25)
                 ->withQueryString();
+
+            $fields = [
+                'majors' => Student::distinct()->get(['major'])->pluck('major')->toArray(),
+                'classes' => Student::distinct()->get(['class'])->pluck('class')->toArray(),
+            ];
         } else if ($request->get('role') == 'teacher') {
             $teachers_voter = Teacher::filter($request)
                 ->orderBy('name')
                 ->paginate(25)
                 ->withQueryString();
         }
-        return view('admin.recapitulation', compact('students_voter', 'teachers_voter'));
+        return view('admin.recapitulation', compact('students_voter', 'teachers_voter', 'fields'));
     }
 
     public function changePassword(Request $request)
@@ -91,5 +92,11 @@ class AdminController extends Controller
         }
 
         return back()->with('success', 'Password changed successfully');
+    }
+
+    public function candidates()
+    {
+        $candidates = Candidate::all();
+        return view('admin.candidates', compact('candidates'));
     }
 }

@@ -45,24 +45,17 @@
                 <x-form.dropdown x-init=""
                     @change="addUrlSearchParams({ key: 'class', value: $el.selectedOptions[0].value})" label="Kelas">
                     <option value="">Semua</option>
-                    <option value="10" @selected(Request::get('class') == '10')>X</option>
-                    <option value="11" @selected(Request::get('class') == '11')>XI</option>
-                    <option value="12" @selected(Request::get('class') == '12')>XII</option>
-                    <option value="13" @selected(Request::get('class') == '13')>XIII</option>
+                    @foreach ($fields['classes'] as $class)
+                        <option value="{{ $class }}" @selected(Request::get('{{ $class }}') == '{{ $class }}')>{{ $class }}</option>
+                    @endforeach
                 </x-form.dropdown>
 
                 <x-form.dropdown x-init=""
                     @change="addUrlSearchParams({ key: 'major', value: $el.selectedOptions[0].value})" label="Jurusan">
                     <option value="">Semua</option>
-                    'TME', 'KGSP', 'TFLM', 'TEDK', 'SIJA', 'KJIJ', 'TMPO', 'TTL'
-                    <option value="TME" @selected(Request::get('major') == 'TME')>TME</option>
-                    <option value="KGSP" @selected(Request::get('major') == 'KGSP')>KGSP</option>
-                    <option value="TFLM" @selected(Request::get('major') == 'TFLM')>TFLM</option>
-                    <option value="TEDK" @selected(Request::get('major') == 'TEDK')>TEDK</option>
-                    <option value="SIJA" @selected(Request::get('major') == 'SIJA')>SIJA</option>
-                    <option value="KJIJ" @selected(Request::get('major') == 'KJIJ')>KJIJ</option>
-                    <option value="TMPO" @selected(Request::get('major') == 'TMPO')>TMPO</option>
-                    <option value="TTL" @selected(Request::get('major') == 'TTL')>TTL</option>
+                    @foreach ($fields['majors'] as $major)
+                        <option value="{{ $major }}" @selected(Request::get('major') == '{{ $major }}')>{{ $major }}</option>
+                    @endforeach
                 </x-form.dropdown>
 
 
@@ -74,6 +67,7 @@
                     <option value="2" @selected(Request::get('index') == '2')>2</option>
                     <option value="3" @selected(Request::get('index') == '3')>3</option>
                     <option value="4" @selected(Request::get('index') == '4')>4</option>
+                    <option value="5" @selected(Request::get('index') == '5')>5</option>
                 </x-form.dropdown>
             @endif
 

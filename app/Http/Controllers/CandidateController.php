@@ -35,4 +35,13 @@ class CandidateController extends Controller
 
         return back()->with('error', 'Kandidat baru gagal dibuat');
     }
+
+    public function destroy(Candidate $candidate)
+    {
+        if ($candidate->delete()) {
+            return back()->with('success', 'Kandidat berhasil dihapus');
+        }
+
+        return back()->with('error', 'Kandidat gagal dihapus');
+    }
 }
