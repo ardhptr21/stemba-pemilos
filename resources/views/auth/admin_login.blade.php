@@ -3,16 +3,16 @@
 @section('content')
     <x-base.section class="flex flex-col items-center justify-center min-h-screen bg-texture">
         <div class="w-full flex justify-between items-center mb-10">
-            <img style="width: 8rem" src="/assets/images/smkn7smg.png" alt="logo smk n 7 semarang">
-            <h1 class="text-5xl font-bold uppercase">Pemilos SMK N 7 Semarang</h1>
-            <img style="width: 8rem" src="/assets/images/osis.png" alt="logo osis">
+            <img class="w-10 md:w-32" src="/assets/images/smkn7smg.png" alt="logo smk n 7 semarang">
+            <h1 class="text-xl md:text-5xl text-center font-bold uppercase">Pemilos SMK N 7 Semarang</h1>
+            <img class="w-10 md:w-32" src="/assets/images/osis.png" alt="logo osis">
         </div>
         <div
             class="w-11/12 p-12 px-6 py-10 mx-auto bg-white border rounded-md shadow-md border-primary-bold sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
 
-            <h1 class="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
                 Admin Login
-            </h1>
+            </h2>
 
             <form class="mt-10 space-y-5" method="POST" autocomplete="off" action="{{ route('auth.admin_login_logged') }}">
                 @csrf

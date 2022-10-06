@@ -22,4 +22,10 @@ class StudentController extends Controller
 
         return back()->with('success', 'Data siswa berhasil diimport');
     }
+
+    public function truncate()
+    {
+        Student::truncate();
+        return back()->with('success', 'Data siswa berhasil dikosongkan');
+    }
 }

@@ -15,7 +15,8 @@
             <x-button.button-primary type="submit" class="w-full">Import</x-button.button-primary>
         </form>
         <h2 class="text-2xl text-center font-bold">Import Data Guru</h2>
-        <form enctype="multipart/form-data" class="space-y-5" autocomplete="off" method="POST">
+        <form enctype="multipart/form-data" class="space-y-5" autocomplete="off" method="POST"
+            action="{{ route('import.teachers') }}">
             @csrf
             <x-form.input name="file" type="file" label="Data Guru" accept=".xlsx,.csv" />
             <x-button.button-primary type="submit" class="w-full">Import</x-button.button-primary>

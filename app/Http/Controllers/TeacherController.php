@@ -23,4 +23,10 @@ class TeacherController extends Controller
         Excel::import(new TeachersImport, $request->file('file'));
         return back()->with('success', 'Data guru berhasil diimport');
     }
+
+    public function truncate()
+    {
+        Teacher::truncate();
+        return back()->with('success', 'Data guru berhasil dihapus');
+    }
 }
