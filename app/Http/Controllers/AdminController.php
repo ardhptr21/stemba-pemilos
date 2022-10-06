@@ -22,6 +22,9 @@ class AdminController extends Controller
         $divided = $total_all == 0 ? 0 : $total_all_is_done / $total_all * 100;
         $percent_of_all = number_format($divided, 1);
         $each_candidate_percent = $candidates->map(function ($candidate) use ($total_all) {
+            if ($total_all == 0) {
+                return 0.0;
+            }
             return number_format((($candidate->students->count() + $candidate->teachers->count()) / $total_all) * 100, 1);
         })->toArray();
 
