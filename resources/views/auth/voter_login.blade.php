@@ -1,22 +1,27 @@
-@extends('layouts.base', ["title" => "Voter Login"])
+@extends('layouts.base', ['title' => 'Voter Login'])
 @section('content')
     <x-base.section class="flex flex-col items-center justify-center min-h-screen bg-texture" x-data="{ isStudent: {{ $errors->has('nip') ? 'false' : 'true' }} }">
+        <div class="w-full flex justify-between items-center mb-10">
+            <img style="width: 8rem" src="/assets/images/smkn7smg.png" alt="logo smk n 7 semarang">
+            <h1 class="text-5xl font-bold uppercase">Pemilos SMK N 7 Semarang</h1>
+            <img style="width: 8rem" src="/assets/images/osis.png" alt="logo osis">
+        </div>
         <div
             class="w-11/12 p-12 px-6 py-10 mx-auto bg-white border rounded-md shadow-md border-primary-bold sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
 
-            <h1 class="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
                 Login
-            </h1>
+            </h2>
 
             <form class="mt-10 space-y-5" method="POST" action="{{ route('auth.voter_login_logged') }}" autocomplete="off">
                 @csrf
                 <span x-show="isStudent">
-                    <x-form.input name="nis" x-bind:disabled="!isStudent" type="text" label="NIS" placeholder="Masukkan NIS"
-                        error="{{ $errors->first('nis') }}" />
+                    <x-form.input name="nis" x-bind:disabled="!isStudent" type="text" label="NIS"
+                        placeholder="Masukkan NIS" error="{{ $errors->first('nis') }}" />
                 </span>
                 <span x-show="!isStudent">
-                    <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="NIP" placeholder="Masukkan NIP"
-                        error="{{ $errors->first('nip') }}" />
+                    <x-form.input name="nip" x-bind:disabled="isStudent" type="text" label="NIP"
+                        placeholder="Masukkan NIP" error="{{ $errors->first('nip') }}" />
                 </span>
                 <input type="hidden" name="type" x-bind:value="isStudent ? 'student' : 'teacher'">
 
