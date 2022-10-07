@@ -20,6 +20,15 @@
                     error="{{ $errors->first('email') }}" />
                 <x-form.input name="password" type="password" label="Password" placeholder="Masukkan password"
                     error="{{ $errors->first('password') }}" />
+
+
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
+
+                @if ($errors->first('g-recaptcha-response'))
+                    <x-alert.danger>{{ $errors->first('g-recaptcha-response') }}</x-alert.danger>
+                @endif
+
                 @if (session('error'))
                     <x-alert.danger>{{ session('error') }}</x-alert.danger>
                 @endif

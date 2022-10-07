@@ -18,10 +18,13 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'type' => 'required|string|in:teacher,student',
-            'nis' => 'required_if:type,student|numeric|digits:10',
-            'nip' => 'required_if:type,teacher|numeric|digits:18',
+            'nis' => 'required_if:type,student|numeric|digits_between:9,10',
+            'nip' => 'required_if:type,teacher|numeric|digits_between:8,18',
             'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
+
+        unset($validated['g-recaptcha-response']);
 
         $voter = null;
         if ($validated['type'] == 'student') {
@@ -60,7 +63,10 @@ class AuthController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
+
+        unset($validated['g-recaptcha-response']);
 
         if (Auth::attempt($validated)) {
             return to_route('admin.index');
