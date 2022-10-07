@@ -46,7 +46,7 @@
                     @change="addUrlSearchParams({ key: 'class', value: $el.selectedOptions[0].value})" label="Kelas">
                     <option value="">Semua</option>
                     @foreach ($fields['classes'] as $class)
-                        <option value="{{ $class }}" @selected(Request::get('{{ $class }}') == '{{ $class }}')>{{ $class }}</option>
+                        <option value="{{ $class }}" @selected(Request::get('class') == $class)>{{ $class }}</option>
                     @endforeach
                 </x-form.dropdown>
 
@@ -54,7 +54,7 @@
                     @change="addUrlSearchParams({ key: 'major', value: $el.selectedOptions[0].value})" label="Jurusan">
                     <option value="">Semua</option>
                     @foreach ($fields['majors'] as $major)
-                        <option value="{{ $major }}" @selected(Request::get('major') == '{{ $major }}')>{{ $major }}</option>
+                        <option value="{{ $major }}" @selected(Request::get('major') == $major)>{{ $major }}</option>
                     @endforeach
                 </x-form.dropdown>
 
