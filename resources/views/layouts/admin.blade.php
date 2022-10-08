@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'Stemba Pemilos' }}</title>
-    @include('partials.styles')
+    @include('partials.head')
 </head>
 
 <body>
@@ -19,8 +19,8 @@
                     <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">{{ $admin_title ?? 'Dashboard' }}
                     </h5>
                     <button class="w-12 h-16 -mr-2 border-r lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 my-auto" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 my-auto" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'Stemba Pemilos' }}</title>
-    @include('partials.styles')
+    @include('partials.head')
 </head>
 
 <body>

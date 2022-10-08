@@ -26,7 +26,7 @@ class StudentsImport implements ToModel, WithHeadingRow
             "class" => $row['class'],
             "major" => $row['major'],
             "index" => $row['index'],
-            "password" => $row['password']
+            "password" => trim($row['password'])
         ]);
     }
 }
