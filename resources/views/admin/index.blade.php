@@ -2,11 +2,16 @@
 
 
 @section('content')
-    <section class="space-y-10">
-
+    <section>
+        <div class="inline-flex items-center gap-5">
+            <input x-init="" @change="addUrlSearchParams({ key: 'student_only', value: $el.checked})"
+                @checked(Request::get('student_only') == 'true') type="checkbox" id="student_only" class="w-5 h-5" name="student_only">
+            <label for="student_only" class="text-xl select-none">Tampilkan hanya persentase user</label>
+        </div>
         <div class="flex items-center justify-between space-x-4">
             <x-card.card-overview title="Total Persentasi Pemilih" value="{{ $percent_of_all }}%">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
                 </svg>
@@ -24,7 +29,7 @@
         </div>
 
 
-        <div class="overflow-hidden rounded-lg shadow-lg" x-init="generateBarGrafic({{ json_encode($each_candidate_percent) }})">
+        <div class="overflow-hidden rounded-lg shadow-lg mt-10" x-init="generateBarGrafic({{ json_encode($each_candidate_percent) }})">
             <div class="px-5 py-3 bg-gray-50">Presentasi Voting Kandidat</div>
             <canvas class="p-10 bg-white" id="chartBar"></canvas>
         </div>

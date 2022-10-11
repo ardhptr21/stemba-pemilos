@@ -10,22 +10,34 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
         $candidates = Candidate::with(['teachers', 'students'])->get();
         $students = Student::all();
         $teachers = Teacher::all();
 
-        $total_all = $students->count() + $teachers->count();
-        $total_all_is_done = $students->filter(fn ($s) => $s->isDone($s))->count() + $teachers->filter(fn ($t) => $t->isDone($t))->count();
+        $total_all = $students->count();
+        $total_all_is_done = $students->filter(fn ($s) => $s->isDone($s))->count();
+
+        if ($request->get('student_only') != 'true') {
+            $total_all += $teachers->count();
+            $total_all_is_done += $teachers->filter(fn ($t) => $t->isDone($t))->count();
+        }
 
         $divided = $total_all == 0 ? 0 : $total_all_is_done / $total_all * 100;
         $percent_of_all = number_format($divided, 1);
-        $each_candidate_percent = $candidates->map(function ($candidate) use ($total_all) {
+        $each_candidate_percent = $candidates->map(function ($candidate) use ($total_all, $request) {
             if ($total_all == 0) {
                 return 0.0;
             }
-            return number_format((($candidate->students->count() + $candidate->teachers->count()) / $total_all) * 100, 1);
+            $voted_count_total = $candidate->students->count();
+
+            if ($request->get('student_only') != 'true') {
+                $voted_count_total += $candidate->teachers->count();
+            }
+
+            return number_format(($voted_count_total / $total_all) * 100, 1);
         })->toArray();
 
 
